@@ -95,13 +95,12 @@ end
   # 4. For a given person, add a new name to their list of friends
   # (e.g. the function add_friend(@person2, "Scrappy-Doo") should add Scrappy-Doo to the friends.)
   # (hint: This function should not return anything. After the function call, check for the length of the friends array to test it!)
-
   def test_add_friend
     add_friend(@person2, "Scrappy-Doo")
     actual = @person2[:friends].length
     expected = 2
     assert_equal(actual, expected)
-    end
+  end
 
 
   # 5. For a given person, remove a specific name from their list of friends
@@ -117,18 +116,45 @@ end
 
   # 6. Find the total of everyone's money
   # (hint: use the @people array, remember how we checked the total number of eggs yesterday?)
-
+  def test_total_money
+    result = total_money(@people)
+    expected = 143
+    assert_equal(result, expected)
+  end
 
   # 7. For two given people, allow the first person to loan a given value of money to the other
   # (hint: our function will probably need 3 arguments passed to it... the lender, the lendee, and the amount for this function)
   # (hint2: You should test if both the lender's and the lendee's money have changed, maybe two assertions?)
+  def test_loan_friend__lender
+    loan_friend(@person5, @person2, 80)
+    actual = @person5[:monies]
+    expected = 20
+    assert_equal(actual, expected)
+  end
+
+  def test_loan_friend__lendee
+    loan_friend(@person5, @person2, 80)
+    actual = @person2[:monies]
+    expected = 82
+    assert_equal(actual, expected)
+  end
+
 
 
   # 8. Find the set of everyone's favourite food joined together
   # (hint: concatenate the favourites/snack arrays together)
-
+def test_favourite_foods
+  actual = favourite_foods(@people)
+  expected = ["charcuterie", "soup", "bread", "Scooby snacks", "spaghetti", "ratatouille", "spinach"]
+  assert_equal(actual, expected)
+end
 
   # 9. Find people with no friends
   # (hint: return an array, there might be more people in the future with no friends!)
+def test_no_friends
+  actual = no_friends(@people)
+  expected = ["Daphne"]
+  assert_equal(actual, expected)
+end
 
 end
